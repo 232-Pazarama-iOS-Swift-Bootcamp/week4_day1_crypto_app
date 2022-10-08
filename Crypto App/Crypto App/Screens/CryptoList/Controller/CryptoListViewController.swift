@@ -54,7 +54,10 @@ final class CryptoListViewController: UIViewController  {
 
 // MARK: - UITableViewDelegate
 extension CryptoListViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewController = CryptoDetailViewController()
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 }
 
 // MARK: - UITableViewDataSource
