@@ -10,6 +10,7 @@
 // view: 1
 
 import UIKit
+import Kingfisher
 
 final class CryptoListViewController: UIViewController  {
     private var viewModel: CryptoListViewModel
@@ -29,10 +30,14 @@ final class CryptoListViewController: UIViewController  {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Coins"
 
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        let nib = UINib(nibName: "CoinTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "cell")
         
         viewModel.fetchCoins()
         
@@ -59,8 +64,17 @@ extension CryptoListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = viewModel.coinForIndexPath(indexPath)?.name
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CoinTableViewCell
+        guard let coin = viewModel.coinForIndexPath(indexPath) else {
+            fatalError("coin not found.")
+        }
+        
+        cell.title = coin.name
+        cell.price = coin.prettyPrice
+        cell.imageView?.kf.setImage(with: coin.iconUrl) { _ in
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+        }
+        
         return cell
     }
 }

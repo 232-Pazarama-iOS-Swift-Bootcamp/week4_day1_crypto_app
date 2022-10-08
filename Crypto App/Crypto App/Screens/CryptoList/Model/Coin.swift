@@ -26,3 +26,17 @@ struct Coin: Decodable {
     let twitterUrl: String?
     let exp: [String]?
 }
+
+extension Coin {
+    var iconUrl: URL {
+        guard let icon = icon,
+              let iconUrl = URL(string: icon) else {
+            fatalError("icon url not found.")
+        }
+        return iconUrl
+    }
+    
+    var prettyPrice: String {
+        "\(Double(round(100 * (price ?? .zero)) / 100)) ₺"
+    }
+}

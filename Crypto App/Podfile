@@ -8,4 +8,5 @@ target 'Crypto App' do
   # Pods for Crypto App
     pod 'Moya'
     pod 'SnapKit'
+    pod 'Kingfisher'
 end
