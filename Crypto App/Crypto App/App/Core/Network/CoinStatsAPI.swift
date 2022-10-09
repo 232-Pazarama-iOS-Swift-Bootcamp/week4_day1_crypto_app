@@ -7,6 +7,9 @@
 
 import Moya
 
+let plugin: PluginType = NetworkLoggerPlugin(configuration: .init(logOptions: .verbose))
+let provider = MoyaProvider<CoinStatsAPI>(plugins: [plugin])
+
 enum CoinStatsAPI {
     case coins
     case chart(id: String, period: String)

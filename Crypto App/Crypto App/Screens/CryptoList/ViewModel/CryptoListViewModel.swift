@@ -14,8 +14,6 @@ enum CryptoListChanges {
 }
 
 final class CryptoListViewModel {
-    private let provider = MoyaProvider<CoinStatsAPI>()
-    
     private var coinsResponse: CoinsResponse? {
         didSet {
             self.changeHandler?(.didFetchCoins)

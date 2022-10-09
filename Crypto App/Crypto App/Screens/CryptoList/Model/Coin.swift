@@ -39,4 +39,18 @@ extension Coin {
     var prettyPrice: String {
         "\(Double(round(100 * (price ?? .zero)) / 100)) ₺"
     }
+    
+    var change: Double {
+        guard let price = price,
+              let priceChange1w else { return .zero }
+        return Double(round(100 * (price * priceChange1w)) / 100)
+    }
+    
+    var prettyChange: String {
+        if change > .zero {
+            return "↑ \(change) (\(priceChange1w ?? .zero)%)"
+        } else {
+            return "↓ \(change) (\(priceChange1w ?? .zero)%)"
+        }
+    }
 }
