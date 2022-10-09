@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,13 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         setupWindow()
+        FirebaseApp.configure()
         
         return true
     }
     
     private func setupWindow() {
         let window = UIWindow(frame: UIScreen.main.bounds)
-        let viewController = CryptoListViewController(viewModel: CryptoListViewModel())
+        let viewController = AuthViewController()
         let navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
