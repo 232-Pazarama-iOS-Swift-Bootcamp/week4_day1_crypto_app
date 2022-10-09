@@ -10,10 +10,12 @@ import Charts
 
 final class CryptoDetailViewController: UIViewController {
 
+    private let cryptoView = CryptoView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Crypto Detail"
-        
+        title = "Coin Detail"
+        view = cryptoView
     }
 }
