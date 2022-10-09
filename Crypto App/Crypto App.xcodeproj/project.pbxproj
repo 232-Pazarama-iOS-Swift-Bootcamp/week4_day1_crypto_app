@@ -12,6 +12,7 @@
 		ED4CE42128F15267002A38FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED4CE42028F15267002A38FE /* Assets.xcassets */; };
 		ED4CE42428F15267002A38FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED4CE42228F15267002A38FE /* LaunchScreen.storyboard */; };
 		ED4CE43028F160C4002A38FE /* CryptoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4CE42E28F160C4002A38FE /* CryptoListViewController.swift */; };
+		ED89E2FF28F29D1300C96D75 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = ED89E2FE28F29D1300C96D75 /* Charts */; };
 		ED9E9E5F28F1612C00B048B0 /* CryptoListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED9E9E5E28F1612C00B048B0 /* CryptoListViewController.xib */; };
 		ED9E9E6728F16C8D00B048B0 /* CoinStatsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9E9E6628F16C8D00B048B0 /* CoinStatsAPI.swift */; };
 		ED9E9E6A28F179E100B048B0 /* CryptoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9E9E6928F179E100B048B0 /* CryptoListViewModel.swift */; };
@@ -19,7 +20,6 @@
 		ED9E9E6F28F17D4800B048B0 /* CoinsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9E9E6E28F17D4800B048B0 /* CoinsResponse.swift */; };
 		ED9E9E7228F183AE00B048B0 /* CoinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9E9E7128F183AE00B048B0 /* CoinTableViewCell.swift */; };
 		ED9E9E7428F183D800B048B0 /* CoinTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED9E9E7328F183D800B048B0 /* CoinTableViewCell.xib */; };
-		ED9E9E7728F18DD200B048B0 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = ED9E9E7628F18DD200B048B0 /* Charts */; };
 		ED9E9E7A28F18E2A00B048B0 /* CryptoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9E9E7928F18E2A00B048B0 /* CryptoDetailViewController.swift */; };
 		ED9E9E7E28F18E8500B048B0 /* CryptoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9E9E7D28F18E8500B048B0 /* CryptoView.swift */; };
 /* End PBXBuildFile section */
@@ -51,7 +51,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43690CE7EECD234068AC9583 /* Pods_Crypto_App.framework in Frameworks */,
-				ED9E9E7728F18DD200B048B0 /* Charts in Frameworks */,
+				ED89E2FF28F29D1300C96D75 /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,7 +269,7 @@
 			);
 			name = "Crypto App";
 			packageProductDependencies = (
-				ED9E9E7628F18DD200B048B0 /* Charts */,
+				ED89E2FE28F29D1300C96D75 /* Charts */,
 			);
 			productName = "Crypto App";
 			productReference = ED4CE41428F15266002A38FE /* Crypto App.app */;
@@ -300,7 +300,7 @@
 			);
 			mainGroup = ED4CE40B28F15266002A38FE;
 			packageReferences = (
-				ED9E9E7528F18DD200B048B0 /* XCRemoteSwiftPackageReference "Charts" */,
+				ED89E2FD28F29D1300C96D75 /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = ED4CE41528F15266002A38FE /* Products */;
 			projectDirPath = "";
@@ -529,7 +529,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -563,7 +563,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -604,20 +604,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		ED9E9E7528F18DD200B048B0 /* XCRemoteSwiftPackageReference "Charts" */ = {
+		ED89E2FD28F29D1300C96D75 /* XCRemoteSwiftPackageReference "Charts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielgindi/Charts.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
+				minimumVersion = 4.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		ED9E9E7628F18DD200B048B0 /* Charts */ = {
+		ED89E2FE28F29D1300C96D75 /* Charts */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = ED9E9E7528F18DD200B048B0 /* XCRemoteSwiftPackageReference "Charts" */;
+			package = ED89E2FD28F29D1300C96D75 /* XCRemoteSwiftPackageReference "Charts" */;
 			productName = Charts;
 		};
 /* End XCSwiftPackageProductDependency section */
