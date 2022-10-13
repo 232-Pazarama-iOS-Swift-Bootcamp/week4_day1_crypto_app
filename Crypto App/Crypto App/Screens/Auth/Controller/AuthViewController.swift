@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseRemoteConfig
 
 final class AuthViewController: UIViewController {
     
@@ -43,6 +44,27 @@ final class AuthViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Auth"
+        
+        let remoteConfig = RemoteConfig.remoteConfig()
+        let settings = RemoteConfigSettings()
+        settings.minimumFetchInterval = 0
+        remoteConfig.configSettings = settings
+        remoteConfig.setDefaults(fromPlist: "RemoteConfigDefaults")
+        
+        remoteConfig.fetch { (status, error) -> Void in
+            if status == .success {
+                print("Config fetched!")
+                remoteConfig.activate { changed, error in
+                    let isSignInDisabled = remoteConfig.configValue(forKey: "isSignUpDisabled").boolValue
+                    DispatchQueue.main.async {
+                        self.segmentedControl.isHidden = isSignInDisabled
+                    }
+                }
+            } else {
+                print("Config not fetched")
+                print("Error: \(error?.localizedDescription ?? "No error available.")")
+            }
+        }
     }
     
     @IBAction private func didTapLoginButton(_ sender: UIButton) {
@@ -52,13 +74,21 @@ final class AuthViewController: UIViewController {
         }
         switch authType {
         case .signIn:
-            Auth.auth().signIn(withEmail: credential, password: password) { [weak self] authResult, error in
-                guard let strongSelf = self else { return }
+            Auth.auth().signIn(withEmail: credential, password: password) { authResult, error in
                 if let error = error {
                     print(error.localizedDescription)
                     return
                 }
-                print(authResult)
+                
+                let cryptoListViewModel = CryptoListViewModel()
+                let cryptoListViewController = CryptoListViewController(viewModel: cryptoListViewModel)
+                
+//                let favoritesViewModel = FavoritesViewModel()
+//                let favoritesViewController = FavoritesViewController(viewModel: favoritesViewModel)
+                
+//                let tabBarController = UITabBarController()
+//                tabBarController.viewControllers = []
+                self.navigationController?.pushViewController(cryptoListViewController, animated: true)
             }
         case .signUp:
             Auth.auth().createUser(withEmail: credential, password: password) { authResult, error in
@@ -66,7 +96,7 @@ final class AuthViewController: UIViewController {
                     print(error.localizedDescription)
                     return
                 }
-                print(authResult)
+                print("SIGN UP SUCCESSFUL!")
             }
         }
     }

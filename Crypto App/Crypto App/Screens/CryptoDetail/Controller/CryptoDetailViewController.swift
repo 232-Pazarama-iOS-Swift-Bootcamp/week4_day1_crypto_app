@@ -11,7 +11,11 @@ import Kingfisher
 
 final class CryptoDetailViewController: UIViewController {
     
-    private let cryptoDetailView = CryptoDetailView()
+    private lazy var cryptoDetailView: CryptoDetailView = {
+        let view = CryptoDetailView()
+        view.delegate = self
+        return view
+    }()
     
     private var viewModel: CryptoDetailViewModel
     
@@ -75,28 +79,18 @@ final class CryptoDetailViewController: UIViewController {
     }
     
     func setData() {
-        let values = (viewModel.chartResponse?.chart?.enumerated().map { (index, metrics) -> ChartDataEntry in
-            return ChartDataEntry(x: Double(index), y: metrics[1], icon: nil)
+        let entries = (viewModel.chartResponse?.chart?.map { (metrics) -> ChartDataEntry in
+            return ChartDataEntry(x: metrics[0], y: metrics[1])
         })!
-
-        let set1 = LineChartDataSet(entries: values, label: "DataSet 1")
-        set1.drawIconsEnabled = false
-        setup(set1)
-
-        let value = ChartDataEntry(x: Double(3), y: 3)
-        set1.addEntryOrdered(value)
-        let gradientColors = [ChartColorTemplates.colorFromString("#00ff0000").cgColor,
-                              ChartColorTemplates.colorFromString("#ffff0000").cgColor]
-        let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
-
-        set1.fillAlpha = 1
-        set1.fill = LinearGradientFill(gradient: gradient, angle: 90)
-        set1.drawFilledEnabled = true
-
-        let data = LineChartData(dataSet: set1)
-
+        
+        let set = LineChartDataSet(entries: entries)
+        let data = LineChartData(dataSet: set)
         cryptoDetailView.lineChartView.data = data
-        cryptoDetailView.lineChartView.animate(xAxisDuration: 2.5)
+        
+        set.colors = ChartColorTemplates.liberty()
+        set.drawCirclesEnabled = false
+        set.lineWidth = 1.7
+        set.setColor(.red)
     }
 }
 
@@ -109,9 +103,27 @@ extension CryptoDetailViewController: CryptoDetailDelegate {
     func didFetchChart() {
         setData()
     }
+    
+    func didCoinAddedToFavorites() {
+        cryptoDetailView.addFavoriteButton.setTitle("Remove From Favorite", for: .normal)
+        cryptoDetailView.addFavoriteButton.backgroundColor = .systemRed
+    }
 }
 
 // MARK: - ChartViewDelegate
 extension CryptoDetailViewController: ChartViewDelegate {
     
+}
+
+// MARK: - CryptoDetailViewDelegate
+extension CryptoDetailViewController: CryptoDetailViewDelegate {
+    func cryptoDetailView(_ view: CryptoDetailView, didTapAddFavoriteButton button: UIButton) {
+        if button.title(for: .normal) == "Remove From Favorite" {
+            print("REMOVED FROM FAVORITE")
+            cryptoDetailView.addFavoriteButton.setTitle("Add to Favorite", for: .normal)
+            cryptoDetailView.addFavoriteButton.backgroundColor = .systemGreen
+        } else {
+            viewModel.addFavorite()
+        }
+    }
 }

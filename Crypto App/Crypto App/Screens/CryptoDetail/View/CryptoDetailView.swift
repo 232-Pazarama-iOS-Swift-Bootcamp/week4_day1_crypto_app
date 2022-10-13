@@ -8,9 +8,15 @@
 import UIKit
 import Charts
 
+protocol CryptoDetailViewDelegate: AnyObject {
+    func cryptoDetailView(_ view: CryptoDetailView, didTapAddFavoriteButton button: UIButton)
+}
+
 final class CryptoDetailView: UIView {
     
     // MARK: - Properties
+    weak var delegate: CryptoDetailViewDelegate?
+    
     var coinName: String? {
         didSet {
             coinNameLabel.text = coinName
@@ -73,66 +79,25 @@ final class CryptoDetailView: UIView {
     
     private(set) lazy var lineChartView: LineChartView = {
         let chartView = LineChartView()
-        chartView.chartDescription.enabled = false
-        chartView.dragEnabled = true
-        chartView.setScaleEnabled(true)
-        chartView.pinchZoomEnabled = true
         
-        // x-axis limit line
-        let llXAxis = ChartLimitLine(limit: 1, label: "Index 10")
-        llXAxis.lineWidth = 1
-        llXAxis.lineDashLengths = [1, 1, 0]
-        llXAxis.labelPosition = .rightBottom
-        llXAxis.valueFont = .systemFont(ofSize: 10)
-
-        chartView.xAxis.gridLineDashLengths = [1, 1]
-        chartView.xAxis.gridLineDashPhase = 0
-
-        let ll1 = ChartLimitLine(limit: 1000, label: "Upper Limit")
-        ll1.lineWidth = 1
-        ll1.lineDashLengths = [1, 1]
-        ll1.labelPosition = .rightTop
-        ll1.valueFont = .systemFont(ofSize: 10)
-
-        let ll2 = ChartLimitLine(limit: -1000, label: "Lower Limit")
-        ll2.lineWidth = 1
-        ll2.lineDashLengths = [1,1]
-        ll2.labelPosition = .rightBottom
-        ll2.valueFont = .systemFont(ofSize: 10)
-
-        let leftAxis = chartView.leftAxis
-        leftAxis.removeAllLimitLines()
-        leftAxis.addLimitLine(ll1)
-        leftAxis.addLimitLine(ll2)
-        leftAxis.axisMaximum = 1000
-        leftAxis.axisMinimum = -1000
-        leftAxis.gridLineDashLengths = [1, 1]
-        leftAxis.drawLimitLinesBehindDataEnabled = true
-
-        chartView.rightAxis.enabled = false
-
-        //[_chartView.viewPortHandler setMaximumScaleY: 2.f];
-        //[_chartView.viewPortHandler setMaximumScaleX: 2.f];
-
-//        let marker = BalloonMarker(color: UIColor(white: 180/255, alpha: 1),
-//                                   font: .systemFont(ofSize: 12),
-//                                   textColor: .white,
-//                                   insets: UIEdgeInsets(top: 8, left: 8, bottom: 20, right: 8))
-//        marker.chartView = chartView
-//        marker.minimumSize = CGSize(width: 80, height: 40)
-//        chartView.marker = marker
-
-        chartView.legend.form = .line
-
-        chartView.animate(xAxisDuration: 2.5)
+        chartView.doubleTapToZoomEnabled = false
+        chartView.drawGridBackgroundEnabled = true
+        chartView.gridBackgroundColor = .white
+        chartView.xAxis.enabled = false
+        chartView.leftAxis.enabled = false
+        chartView.chartDescription.enabled = false
+        chartView.legend.enabled = false
+        chartView.animate(xAxisDuration: 2)
+        
         return chartView
     }()
     
-    private lazy var addFavoriteButton: UIButton = {
+    private(set) lazy var addFavoriteButton: UIButton = {
         let button = UIButton()
         button.setTitle("Add to Favorite", for: .normal)
-        button.backgroundColor = .gray
+        button.backgroundColor = .systemGreen
         button.layer.cornerRadius = 24.0
+        button.addTarget(self, action: #selector(didTapAddFavoriteButton(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -230,5 +195,10 @@ final class CryptoDetailView: UIView {
     
     func setChartViewDelegate(_ delegate: ChartViewDelegate) {
         lineChartView.delegate = delegate
+    }
+    
+    @objc
+    private func didTapAddFavoriteButton(_ sender: UIButton) {
+        delegate?.cryptoDetailView(self, didTapAddFavoriteButton: sender)
     }
 }

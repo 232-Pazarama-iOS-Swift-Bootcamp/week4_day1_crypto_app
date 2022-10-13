@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		43690CE7EECD234068AC9583 /* Pods_Crypto_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EAADB531860ED534304545 /* Pods_Crypto_App.framework */; };
+		ED1269DA28F85FA300B06DDB /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED1269D928F85FA300B06DDB /* RemoteConfigDefaults.plist */; };
+		ED1269DD28F86ABC00B06DDB /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1269DC28F86ABC00B06DDB /* Encodable+Extensions.swift */; };
+		ED1269E128F86E4200B06DDB /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1269DF28F86E4200B06DDB /* FavoritesViewController.swift */; };
+		ED1269E228F86E4200B06DDB /* FavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED1269E028F86E4200B06DDB /* FavoritesViewController.xib */; };
+		ED1269E728F86E6500B06DDB /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1269E628F86E6500B06DDB /* FavoritesViewModel.swift */; };
 		ED4CE41828F15266002A38FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4CE41728F15266002A38FE /* AppDelegate.swift */; };
 		ED4CE42128F15267002A38FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED4CE42028F15267002A38FE /* Assets.xcassets */; };
 		ED4CE42428F15267002A38FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED4CE42228F15267002A38FE /* LaunchScreen.storyboard */; };
@@ -38,6 +43,11 @@
 /* Begin PBXFileReference section */
 		05B0A54D1D76FA2FF4AB6ADF /* Pods-Crypto App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Crypto App.release.xcconfig"; path = "Target Support Files/Pods-Crypto App/Pods-Crypto App.release.xcconfig"; sourceTree = "<group>"; };
 		2EF3A175DD055FF9FE6195E4 /* Pods-Crypto App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Crypto App.debug.xcconfig"; path = "Target Support Files/Pods-Crypto App/Pods-Crypto App.debug.xcconfig"; sourceTree = "<group>"; };
+		ED1269D928F85FA300B06DDB /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
+		ED1269DC28F86ABC00B06DDB /* Encodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extensions.swift"; sourceTree = "<group>"; };
+		ED1269DF28F86E4200B06DDB /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		ED1269E028F86E4200B06DDB /* FavoritesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesViewController.xib; sourceTree = "<group>"; };
+		ED1269E628F86E6500B06DDB /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		ED4CE41428F15266002A38FE /* Crypto App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Crypto App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED4CE41728F15266002A38FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ED4CE42028F15267002A38FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -97,10 +107,51 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		ED1269DB28F86AA900B06DDB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				ED1269DC28F86ABC00B06DDB /* Encodable+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		ED1269DE28F86E3400B06DDB /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				ED1269E528F86E5600B06DDB /* ViewModel */,
+				ED1269E428F86E4D00B06DDB /* View */,
+				ED1269E328F86E4600B06DDB /* Controller */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		ED1269E328F86E4600B06DDB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				ED1269DF28F86E4200B06DDB /* FavoritesViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		ED1269E428F86E4D00B06DDB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ED1269E028F86E4200B06DDB /* FavoritesViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		ED1269E528F86E5600B06DDB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				ED1269E628F86E6500B06DDB /* FavoritesViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		ED4CE40B28F15266002A38FE = {
 			isa = PBXGroup;
 			children = (
-				ED89E30B28F2D02500C96D75 /* GoogleService-Info.plist */,
 				ED4CE41628F15266002A38FE /* Crypto App */,
 				ED4CE41528F15266002A38FE /* Products */,
 				18485ABB463821555425277A /* Pods */,
@@ -140,6 +191,7 @@
 		ED4CE42C28F1527F002A38FE /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				ED1269DE28F86E3400B06DDB /* Favorites */,
 				ED89E31828F2D6DD00C96D75 /* Auth */,
 				ED9E9E7828F18DF200B048B0 /* CryptoDetail */,
 				ED4CE42D28F16082002A38FE /* CryptoList */,
@@ -228,6 +280,7 @@
 		ED9E9E6028F16C0B00B048B0 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				ED1269DB28F86AA900B06DDB /* Extensions */,
 				ED9E9E6528F16C6200B048B0 /* Network */,
 			);
 			path = Core;
@@ -260,6 +313,8 @@
 		ED9E9E6428F16C3100B048B0 /* Plists */ = {
 			isa = PBXGroup;
 			children = (
+				ED1269D928F85FA300B06DDB /* RemoteConfigDefaults.plist */,
+				ED89E30B28F2D02500C96D75 /* GoogleService-Info.plist */,
 				ED4CE42528F15267002A38FE /* Info.plist */,
 			);
 			path = Plists;
@@ -398,11 +453,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED1269DA28F85FA300B06DDB /* RemoteConfigDefaults.plist in Resources */,
 				ED4CE42428F15267002A38FE /* LaunchScreen.storyboard in Resources */,
 				ED4CE42128F15267002A38FE /* Assets.xcassets in Resources */,
 				ED89E30C28F2D02500C96D75 /* GoogleService-Info.plist in Resources */,
 				ED9E9E7428F183D800B048B0 /* CoinTableViewCell.xib in Resources */,
 				ED89E31C28F2D6F900C96D75 /* AuthViewController.xib in Resources */,
+				ED1269E228F86E4200B06DDB /* FavoritesViewController.xib in Resources */,
 				ED9E9E5F28F1612C00B048B0 /* CryptoListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,16 +515,19 @@
 			files = (
 				ED89E30528F2B7A800C96D75 /* ChartResponse.swift in Sources */,
 				ED4CE41828F15266002A38FE /* AppDelegate.swift in Sources */,
+				ED1269E728F86E6500B06DDB /* FavoritesViewModel.swift in Sources */,
 				ED9E9E6F28F17D4800B048B0 /* CoinsResponse.swift in Sources */,
 				ED9E9E6A28F179E100B048B0 /* CryptoListViewModel.swift in Sources */,
 				ED89E31B28F2D6F900C96D75 /* AuthViewController.swift in Sources */,
 				ED9E9E6728F16C8D00B048B0 /* CoinStatsAPI.swift in Sources */,
 				ED9E9E7A28F18E2A00B048B0 /* CryptoDetailViewController.swift in Sources */,
+				ED1269DD28F86ABC00B06DDB /* Encodable+Extensions.swift in Sources */,
 				ED9E9E6D28F17C0A00B048B0 /* Coin.swift in Sources */,
 				ED89E30228F2ABE900C96D75 /* CryptoDetailViewModel.swift in Sources */,
 				ED4CE43028F160C4002A38FE /* CryptoListViewController.swift in Sources */,
 				ED9E9E7228F183AE00B048B0 /* CoinTableViewCell.swift in Sources */,
 				ED89E32128F2D92800C96D75 /* AuthViewModel.swift in Sources */,
+				ED1269E128F86E4200B06DDB /* FavoritesViewController.swift in Sources */,
 				ED9E9E7E28F18E8500B048B0 /* CryptoDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -6,15 +6,19 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 @objc
 protocol CryptoDetailDelegate: AnyObject {
     @objc optional func didErrorOccurred(_ error: Error)
     @objc optional func didFetchChart()
+    @objc optional func didCoinAddedToFavorites()
 }
 
 final class CryptoDetailViewModel {
     weak var delegate: CryptoDetailDelegate?
+    
+    private let db = Firestore.firestore()
     
     private var coin: Coin
     
@@ -61,6 +65,19 @@ final class CryptoDetailViewModel {
                 } catch {
                     self.delegate?.didErrorOccurred?(error)
                 }
+            }
+        }
+    }
+    
+    func addFavorite() {
+        guard let data = coin.dictionary else {
+            return
+        }
+        db.collection("coins").addDocument(data: data) { err in
+            if let err = err {
+                self.delegate?.didErrorOccurred?(err)
+            } else {
+                self.delegate?.didCoinAddedToFavorites?()
             }
         }
     }
