@@ -70,15 +70,21 @@ final class CryptoDetailViewModel {
     }
     
     func addFavorite() {
-        guard let data = coin.dictionary else {
-            return
-        }
-        db.collection("coins").addDocument(data: data) { err in
-            if let err = err {
-                self.delegate?.didErrorOccurred?(err)
-            } else {
-                self.delegate?.didCoinAddedToFavorites?()
+        do {
+            guard let data = try coin.dictionary else {
+                return
             }
+            
+            db.collection("coins").addDocument(data: data) { err in
+                
+                if let err = err {
+                    self.delegate?.didErrorOccurred?(err)
+                } else {
+                    self.delegate?.didCoinAddedToFavorites?()
+                }
+            }
+        } catch {
+            delegate?.didErrorOccurred?(error)
         }
     }
 }

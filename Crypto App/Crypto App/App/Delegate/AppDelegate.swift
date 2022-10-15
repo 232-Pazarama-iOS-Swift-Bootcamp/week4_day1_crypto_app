@@ -21,18 +21,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
-        let db = Firestore.firestore()
+        _ = Firestore.firestore()
         
         return true
     }
     
     private func setupWindow() {
         let window = UIWindow(frame: UIScreen.main.bounds)
-        let viewController = AuthViewController()
+        let viewModel = AuthViewModel()
+        let viewController = AuthViewController(viewModel: viewModel)
         let navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
         self.window = window
     }
 }
-

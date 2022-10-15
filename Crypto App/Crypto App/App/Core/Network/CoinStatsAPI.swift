@@ -17,6 +17,7 @@ enum CoinStatsAPI {
 
 // MARK: - TargetType
 extension CoinStatsAPI: TargetType {
+    // URL: https://api.coinstats.app/public/v1
     var baseURL: URL {
         guard let url = URL(string: "https://api.coinstats.app/public/v1") else {
             fatalError("Base URL not found or not in correct format.")
@@ -24,6 +25,7 @@ extension CoinStatsAPI: TargetType {
         return url
     }
     
+    // URL: https://api.coinstats.app/public/v1/charts
     var path: String {
         switch self {
         case .coins:
@@ -37,6 +39,7 @@ extension CoinStatsAPI: TargetType {
         .get
     }
     
+    // URL: https://api.coinstats.app/public/v1/charts?coinId=bitcoin&period=1w
     var task: Moya.Task {
         switch self {
         case .coins:

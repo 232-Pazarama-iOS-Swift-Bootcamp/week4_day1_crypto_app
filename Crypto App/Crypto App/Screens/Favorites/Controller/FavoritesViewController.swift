@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class FavoritesViewController: UIViewController {
+final class FavoritesViewController: CAViewController {
     
     private let viewModel: FavoritesViewModel
 
@@ -27,12 +27,14 @@ final class FavoritesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Favorites"
+        
         let nib = UINib(nibName: "CoinTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "cell")
         
         viewModel.fetchFavorites { error in
             if let error = error {
-                print(error.localizedDescription)
+                self.showError(error)
             } else {
                 self.tableView.reloadData()
             }

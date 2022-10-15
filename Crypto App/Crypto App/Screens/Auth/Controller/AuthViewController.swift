@@ -6,10 +6,10 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseRemoteConfig
 
-final class AuthViewController: UIViewController {
+final class AuthViewController: CAViewController {
+    
+    private let viewModel: AuthViewModel
     
     enum AuthType: String {
         case signIn = "Sign In"
@@ -40,30 +40,42 @@ final class AuthViewController: UIViewController {
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    // MARK: - Init
+    init(viewModel: AuthViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.changeHandler = { change in
+            switch change {
+            case .didErrorOccurred(let error):
+                self.showError(error)
+            case .didSignUpSuccessful:
+                self.showAlert(title: "SIGN UP SUCCESSFUL!")
+            }
+        }
+        /*
+        flickrApiProvider.request(.getRecentPhotos) { result in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let response):
+                print(String(decoding: response.data, as: UTF8.self))
+            }
+        }
+        */
         title = "Auth"
         
-        let remoteConfig = RemoteConfig.remoteConfig()
-        let settings = RemoteConfigSettings()
-        settings.minimumFetchInterval = 0
-        remoteConfig.configSettings = settings
-        remoteConfig.setDefaults(fromPlist: "RemoteConfigDefaults")
-        
-        remoteConfig.fetch { (status, error) -> Void in
-            if status == .success {
-                print("Config fetched!")
-                remoteConfig.activate { changed, error in
-                    let isSignInDisabled = remoteConfig.configValue(forKey: "isSignUpDisabled").boolValue
-                    DispatchQueue.main.async {
-                        self.segmentedControl.isHidden = isSignInDisabled
-                    }
-                }
-            } else {
-                print("Config not fetched")
-                print("Error: \(error?.localizedDescription ?? "No error available.")")
-            }
+        viewModel.fetchRemoteConfig { isSignUpDisabled in
+            self.segmentedControl.isHidden = isSignUpDisabled
         }
     }
     
@@ -74,30 +86,23 @@ final class AuthViewController: UIViewController {
         }
         switch authType {
         case .signIn:
-            Auth.auth().signIn(withEmail: credential, password: password) { authResult, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                    return
-                }
-                
+            viewModel.signIn(email: credential,
+                             password: password,
+                             completion: { [weak self] in
+                guard let self = self else { return }
                 let cryptoListViewModel = CryptoListViewModel()
                 let cryptoListViewController = CryptoListViewController(viewModel: cryptoListViewModel)
                 
-//                let favoritesViewModel = FavoritesViewModel()
-//                let favoritesViewController = FavoritesViewController(viewModel: favoritesViewModel)
+                let favoritesViewModel = FavoritesViewModel()
+                let favoritesViewController = FavoritesViewController(viewModel: favoritesViewModel)
                 
-//                let tabBarController = UITabBarController()
-//                tabBarController.viewControllers = []
-                self.navigationController?.pushViewController(cryptoListViewController, animated: true)
-            }
+                let tabBarController = UITabBarController()
+                tabBarController.viewControllers = [cryptoListViewController, favoritesViewController]
+                self.navigationController?.pushViewController(tabBarController, animated: true)
+            })
         case .signUp:
-            Auth.auth().createUser(withEmail: credential, password: password) { authResult, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                    return
-                }
-                print("SIGN UP SUCCESSFUL!")
-            }
+            viewModel.signUp(email: credential,
+                             password: password)
         }
     }
     

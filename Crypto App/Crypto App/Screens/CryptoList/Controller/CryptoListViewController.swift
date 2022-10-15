@@ -12,7 +12,7 @@
 import UIKit
 import Kingfisher
 
-final class CryptoListViewController: UIViewController  {
+final class CryptoListViewController: CAViewController  {
     private var viewModel: CryptoListViewModel
 
     @IBOutlet private weak var tableView: UITableView!
@@ -33,6 +33,8 @@ final class CryptoListViewController: UIViewController  {
         
         title = "Coins"
 
+        tabBarController?.navigationItem.hidesBackButton = true
+
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -46,7 +48,7 @@ final class CryptoListViewController: UIViewController  {
             case .didFetchCoins:
                 self.tableView.reloadData()
             case .didErrorOccurred(let error):
-                print(error.localizedDescription)
+                self.showError(error)
             }
         }
     }
