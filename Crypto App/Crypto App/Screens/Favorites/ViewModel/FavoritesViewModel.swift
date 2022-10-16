@@ -6,32 +6,47 @@
 //
 
 import Foundation
-import FirebaseFirestore
 
-final class FavoritesViewModel {
+final class FavoritesViewModel: CAViewModel {
     
-    private let db = Firestore.firestore()
-    
-    private var coins: [Coin]?
+    private var coins = [Coin]()
     
     var numberOfRows: Int {
-        coins?.count ?? .zero
+        coins.count
     }
     
     func coinForIndexPath(_ indexPath: IndexPath) -> Coin? {
-        coins?[indexPath.row]
+        coins[indexPath.row]
     }
     
     func fetchFavorites(_ completion: @escaping (Error?) -> Void) {
-        db.collection("coins").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                completion(err)
-            } else {
-                self.coins = querySnapshot!.documents.map { document in
-                    Coin(from: document.data())
-                }
-                completion(nil)
+        
+        coins = []
+        
+        guard let uid = uid else {
+            return
+        }
+        
+        db.collection("users").document(uid).getDocument() { (querySnapshot, err) in
+            guard let data = querySnapshot?.data() else {
+                return
             }
+            let user = User(from: data)
+            
+            user.favorites?.forEach({ coinId in
+                self.db.collection("coins").document(coinId).getDocument { (querySnapshot, err) in
+                    if let err = err {
+                        completion(err)
+                    } else {
+                        guard let data = querySnapshot?.data() else {
+                            return
+                        }
+                        let coin = Coin(from: data)
+                        self.coins.append(coin)
+                        completion(nil)
+                    }
+                }
+            })
         }
     }
 }

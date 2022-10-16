@@ -1,0 +1,12 @@
+xcassets:
+  inputs:
+    - Crypto App/App/Assets/Assets.xcassets
+  outputs:
+    templateName: swift5
+    output: Crypto App/App/Assets/Generated/Assets.swift
+fonts:
+  inputs:
+    - Crypto App/App/Assets/Fonts
+  outputs:
+    templateName: swift5
+    output: Crypto App/App/Assets/Generated/Fonts.swift

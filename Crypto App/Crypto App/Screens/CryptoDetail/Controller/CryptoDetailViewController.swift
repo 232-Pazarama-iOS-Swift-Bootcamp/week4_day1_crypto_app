@@ -49,10 +49,12 @@ final class CryptoDetailViewController: CAViewController {
     }
     
     func setData() {
-        let entries = (viewModel.chartResponse?.chart?.map { (metrics) -> ChartDataEntry in
+        guard let entries = (viewModel.chartResponse?.chart?.map { (metrics) -> ChartDataEntry in
             return ChartDataEntry(x: metrics[0],
                                   y: metrics[1])
-        })!
+        }) else {
+            return
+        }
         
         let set = LineChartDataSet(entries: entries)
         set.colors = ChartColorTemplates.liberty()
@@ -80,13 +82,12 @@ extension CryptoDetailViewController: CryptoDetailDelegate {
     func didCoinAddedToFavorites() {
         cryptoDetailView.addFavoriteButton.setTitle("Remove From Favorite", for: .normal)
         cryptoDetailView.addFavoriteButton.backgroundColor = .systemRed
+        NotificationCenter().post(name: NSNotification.Name("didAnyCoinAddedToFavorites"), object: nil)
     }
 }
 
 // MARK: - ChartViewDelegate
-extension CryptoDetailViewController: ChartViewDelegate {
-    
-}
+extension CryptoDetailViewController: ChartViewDelegate { }
 
 // MARK: - CryptoDetailViewDelegate
 extension CryptoDetailViewController: CryptoDetailViewDelegate {

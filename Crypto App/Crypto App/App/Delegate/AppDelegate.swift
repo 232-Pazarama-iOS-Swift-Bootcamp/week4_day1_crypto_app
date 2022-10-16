@@ -17,13 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        setupFirebase()
         setupWindow()
         
+        return true
+    }
+    
+    private func setupFirebase() {
         FirebaseApp.configure()
         
         _ = Firestore.firestore()
-        
-        return true
     }
     
     private func setupWindow() {

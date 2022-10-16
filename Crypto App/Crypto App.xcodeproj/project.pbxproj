@@ -40,6 +40,19 @@
 		EDC88D9B28FA93C800D8645D /* AlertPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC88D9A28FA93C800D8645D /* AlertPresentable.swift */; };
 		EDC88D9E28FA978100D8645D /* CAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC88D9D28FA978100D8645D /* CAViewController.swift */; };
 		EDC88DA028FAA40800D8645D /* FlickrAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC88D9F28FAA40800D8645D /* FlickrAPI.swift */; };
+		EDF0F58D28FBDDBB00B7C51D /* CALabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0F58C28FBDDBB00B7C51D /* CALabel.swift */; };
+		EDF0F58E28FBDE3700B7C51D /* Silkscreen-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDF0F58A28FBDD1800B7C51D /* Silkscreen-Bold.ttf */; };
+		EDF0F58F28FBDE3700B7C51D /* Silkscreen-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDF0F58B28FBDD1800B7C51D /* Silkscreen-Regular.ttf */; };
+		EDF0F5A928FBEFA100B7C51D /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0F5A828FBEFA100B7C51D /* Assets.swift */; };
+		EDF0F5AB28FBF5BF00B7C51D /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0F5AA28FBF5BF00B7C51D /* Fonts.swift */; };
+		EDF0F5B028FBFA9B00B7C51D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0F5AE28FBFA9B00B7C51D /* ProfileViewController.swift */; };
+		EDF0F5B128FBFA9B00B7C51D /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDF0F5AF28FBFA9B00B7C51D /* ProfileViewController.xib */; };
+		EDF0F5B628FC067D00B7C51D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0F5B528FC067D00B7C51D /* User.swift */; };
+		EDF0F5B928FC082500B7C51D /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0F5B828FC082500B7C51D /* Encodable+Extensions.swift */; };
+		EDF0F5BC28FC15FA00B7C51D /* UserDefaultConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0F5BB28FC15FA00B7C51D /* UserDefaultConstants.swift */; };
+		EDF0F5BE28FC179F00B7C51D /* UserDefaultsAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0F5BD28FC179F00B7C51D /* UserDefaultsAccessible.swift */; };
+		EDF0F5C028FC180000B7C51D /* CAViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0F5BF28FC180000B7C51D /* CAViewModel.swift */; };
+		EDF0F5C228FC182A00B7C51D /* FireBaseFireStoreAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0F5C128FC182A00B7C51D /* FireBaseFireStoreAccessible.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +86,19 @@
 		EDC88D9A28FA93C800D8645D /* AlertPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresentable.swift; sourceTree = "<group>"; };
 		EDC88D9D28FA978100D8645D /* CAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAViewController.swift; sourceTree = "<group>"; };
 		EDC88D9F28FAA40800D8645D /* FlickrAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrAPI.swift; sourceTree = "<group>"; };
+		EDF0F58A28FBDD1800B7C51D /* Silkscreen-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Silkscreen-Bold.ttf"; sourceTree = "<group>"; };
+		EDF0F58B28FBDD1800B7C51D /* Silkscreen-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Silkscreen-Regular.ttf"; sourceTree = "<group>"; };
+		EDF0F58C28FBDDBB00B7C51D /* CALabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALabel.swift; sourceTree = "<group>"; };
+		EDF0F5A828FBEFA100B7C51D /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		EDF0F5AA28FBF5BF00B7C51D /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		EDF0F5AE28FBFA9B00B7C51D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		EDF0F5AF28FBFA9B00B7C51D /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		EDF0F5B528FC067D00B7C51D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		EDF0F5B828FC082500B7C51D /* Encodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extensions.swift"; sourceTree = "<group>"; };
+		EDF0F5BB28FC15FA00B7C51D /* UserDefaultConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultConstants.swift; sourceTree = "<group>"; };
+		EDF0F5BD28FC179F00B7C51D /* UserDefaultsAccessible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsAccessible.swift; sourceTree = "<group>"; };
+		EDF0F5BF28FC180000B7C51D /* CAViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAViewModel.swift; sourceTree = "<group>"; };
+		EDF0F5C128FC182A00B7C51D /* FireBaseFireStoreAccessible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseFireStoreAccessible.swift; sourceTree = "<group>"; };
 		F9EAADB531860ED534304545 /* Pods_Crypto_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Crypto_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -187,6 +213,7 @@
 		ED4CE42C28F1527F002A38FE /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				EDF0F5AD28FBFA8600B7C51D /* Profile */,
 				ED1269DE28F86E3400B06DDB /* Favorites */,
 				ED89E31828F2D6DD00C96D75 /* Auth */,
 				ED9E9E7828F18DF200B048B0 /* CryptoDetail */,
@@ -242,6 +269,7 @@
 		ED89E31828F2D6DD00C96D75 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				EDF0F5B428FC066E00B7C51D /* Model */,
 				ED89E31F28F2D91B00C96D75 /* ViewModel */,
 				ED89E31E28F2D70400C96D75 /* View */,
 				ED89E31D28F2D6FC00C96D75 /* Controller */,
@@ -276,6 +304,8 @@
 		ED9E9E6028F16C0B00B048B0 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				EDF0F5BA28FC15EB00B7C51D /* Constants */,
+				EDF0F5B728FC081700B7C51D /* Extensions */,
 				EDC88D9C28FA972C00D8645D /* CAKit */,
 				EDC88D9928FA923100D8645D /* Helpers */,
 				ED9E9E6528F16C6200B048B0 /* Network */,
@@ -302,6 +332,8 @@
 		ED9E9E6328F16C2600B048B0 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				EDF0F59828FBE9BF00B7C51D /* Generated */,
+				EDF0F58928FBDD0800B7C51D /* Fonts */,
 				ED4CE42028F15267002A38FE /* Assets.xcassets */,
 			);
 			path = Assets;
@@ -391,8 +423,79 @@
 			isa = PBXGroup;
 			children = (
 				EDC88D9D28FA978100D8645D /* CAViewController.swift */,
+				EDF0F58C28FBDDBB00B7C51D /* CALabel.swift */,
+				EDF0F5BF28FC180000B7C51D /* CAViewModel.swift */,
 			);
 			path = CAKit;
+			sourceTree = "<group>";
+		};
+		EDF0F58928FBDD0800B7C51D /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				EDF0F58A28FBDD1800B7C51D /* Silkscreen-Bold.ttf */,
+				EDF0F58B28FBDD1800B7C51D /* Silkscreen-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		EDF0F59828FBE9BF00B7C51D /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				EDF0F5AA28FBF5BF00B7C51D /* Fonts.swift */,
+				EDF0F5A828FBEFA100B7C51D /* Assets.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
+		EDF0F5AD28FBFA8600B7C51D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				EDF0F5B328FBFAA300B7C51D /* Controller */,
+				EDF0F5B228FBFA9E00B7C51D /* View */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		EDF0F5B228FBFA9E00B7C51D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EDF0F5AF28FBFA9B00B7C51D /* ProfileViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EDF0F5B328FBFAA300B7C51D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EDF0F5AE28FBFA9B00B7C51D /* ProfileViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EDF0F5B428FC066E00B7C51D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EDF0F5B528FC067D00B7C51D /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EDF0F5B728FC081700B7C51D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EDF0F5B828FC082500B7C51D /* Encodable+Extensions.swift */,
+				EDF0F5BD28FC179F00B7C51D /* UserDefaultsAccessible.swift */,
+				EDF0F5C128FC182A00B7C51D /* FireBaseFireStoreAccessible.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EDF0F5BA28FC15EB00B7C51D /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				EDF0F5BB28FC15FA00B7C51D /* UserDefaultConstants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -407,6 +510,8 @@
 				ED4CE41128F15266002A38FE /* Frameworks */,
 				ED4CE41228F15266002A38FE /* Resources */,
 				6838ECDDAECCD978C88067A2 /* [CP] Embed Pods Frameworks */,
+				EDF0F59928FBED2B00B7C51D /* SwiftGen */,
+				EDF0F5AC28FBF71A00B7C51D /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -471,6 +576,9 @@
 				ED4CE42428F15267002A38FE /* LaunchScreen.storyboard in Resources */,
 				ED4CE42128F15267002A38FE /* Assets.xcassets in Resources */,
 				ED89E30C28F2D02500C96D75 /* GoogleService-Info.plist in Resources */,
+				EDF0F58F28FBDE3700B7C51D /* Silkscreen-Regular.ttf in Resources */,
+				EDF0F5B128FBFA9B00B7C51D /* ProfileViewController.xib in Resources */,
+				EDF0F58E28FBDE3700B7C51D /* Silkscreen-Bold.ttf in Resources */,
 				ED9E9E7428F183D800B048B0 /* CoinTableViewCell.xib in Resources */,
 				ED89E31C28F2D6F900C96D75 /* AuthViewController.xib in Resources */,
 				ED1269E228F86E4200B06DDB /* FavoritesViewController.xib in Resources */,
@@ -520,6 +628,42 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Crypto App/Pods-Crypto App-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		EDF0F59928FBED2B00B7C51D /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# For enable this phase, remove below line \nexit 0\n\nif test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftgen >/dev/null; then\n  swiftgen\nelse\n  echo \"warning: SwiftGen not installed, download it from https://github.com/SwiftGen/SwiftGen\"\nfi\n";
+		};
+		EDF0F5AC28FBF71A00B7C51D /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -527,16 +671,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDF0F5BC28FC15FA00B7C51D /* UserDefaultConstants.swift in Sources */,
 				EDC88D9B28FA93C800D8645D /* AlertPresentable.swift in Sources */,
+				EDF0F5C228FC182A00B7C51D /* FireBaseFireStoreAccessible.swift in Sources */,
+				EDF0F5BE28FC179F00B7C51D /* UserDefaultsAccessible.swift in Sources */,
 				ED89E30528F2B7A800C96D75 /* ChartResponse.swift in Sources */,
 				ED4CE41828F15266002A38FE /* AppDelegate.swift in Sources */,
+				EDF0F5C028FC180000B7C51D /* CAViewModel.swift in Sources */,
 				EDC88DA028FAA40800D8645D /* FlickrAPI.swift in Sources */,
 				ED1269E728F86E6500B06DDB /* FavoritesViewModel.swift in Sources */,
 				ED9E9E6F28F17D4800B048B0 /* CoinsResponse.swift in Sources */,
+				EDF0F5B028FBFA9B00B7C51D /* ProfileViewController.swift in Sources */,
 				ED9E9E6A28F179E100B048B0 /* CryptoListViewModel.swift in Sources */,
+				EDF0F5AB28FBF5BF00B7C51D /* Fonts.swift in Sources */,
 				ED89E31B28F2D6F900C96D75 /* AuthViewController.swift in Sources */,
 				ED9E9E6728F16C8D00B048B0 /* CoinStatsAPI.swift in Sources */,
 				EDC88D9E28FA978100D8645D /* CAViewController.swift in Sources */,
+				EDF0F58D28FBDDBB00B7C51D /* CALabel.swift in Sources */,
+				EDF0F5B928FC082500B7C51D /* Encodable+Extensions.swift in Sources */,
 				ED9E9E7A28F18E2A00B048B0 /* CryptoDetailViewController.swift in Sources */,
 				ED9E9E6D28F17C0A00B048B0 /* Coin.swift in Sources */,
 				ED89E30228F2ABE900C96D75 /* CryptoDetailViewModel.swift in Sources */,
@@ -544,7 +696,9 @@
 				ED9E9E7228F183AE00B048B0 /* CoinTableViewCell.swift in Sources */,
 				ED89E32128F2D92800C96D75 /* AuthViewModel.swift in Sources */,
 				ED1269E128F86E4200B06DDB /* FavoritesViewController.swift in Sources */,
+				EDF0F5A928FBEFA100B7C51D /* Assets.swift in Sources */,
 				ED9E9E7E28F18E8500B048B0 /* CryptoDetailView.swift in Sources */,
+				EDF0F5B628FC067D00B7C51D /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

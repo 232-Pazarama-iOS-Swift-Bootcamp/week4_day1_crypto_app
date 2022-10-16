@@ -10,6 +10,8 @@ import UIKit
 final class FavoritesViewController: CAViewController {
     
     private let viewModel: FavoritesViewModel
+    
+    private var isAnyCoinAddedToFavorites: Bool = true
 
     @IBOutlet private weak var tableView: UITableView!
     
@@ -28,25 +30,50 @@ final class FavoritesViewController: CAViewController {
         super.viewDidLoad()
 
         title = "Favorites"
+        tabBarController?.tabBar.tintColor = .systemRed
+        let tabBarIcon = UIImage(named: "favorite")
+        tabBarItem = UITabBarItem(title: "Favorites",
+                                  image: tabBarIcon,
+                                  tag: .zero)
         
         let nib = UINib(nibName: "CoinTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "cell")
         
-        viewModel.fetchFavorites { error in
-            if let error = error {
-                self.showError(error)
-            } else {
-                self.tableView.reloadData()
+        //fetchFavorites()
+        
+        NotificationCenter().addObserver(self,
+                                         selector: #selector(self.didAnyCoinAddedToFavorites),
+                                         name: NSNotification.Name("didAnyCoinAddedToFavorites"),
+                                         object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        isAnyCoinAddedToFavorites = true
+        fetchFavorites()
+    }
+    
+    // MARK: - Methods
+    private func fetchFavorites() {
+        if isAnyCoinAddedToFavorites {
+            isAnyCoinAddedToFavorites = false
+            viewModel.fetchFavorites { error in
+                if let error = error {
+                    self.showError(error)
+                } else {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
-
+    
+    @objc private func didAnyCoinAddedToFavorites() {
+        isAnyCoinAddedToFavorites = true
+    }
 }
 
 // MARK: - UITableViewDelegate
-extension FavoritesViewController: UITableViewDelegate {
-    
-}
+extension FavoritesViewController: UITableViewDelegate { }
 
 // MARK: - UITableViewDataSource
 extension FavoritesViewController: UITableViewDataSource {
@@ -55,7 +82,12 @@ extension FavoritesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CoinTableViewCell
+        // swiftlint:disable force_cast
+        // disabled code comes here
+        // swiftlint:enable force_cast
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CoinTableViewCell else {
+            fatalError("CoinTableViewCell not found.")
+        }
         guard let coin = viewModel.coinForIndexPath(indexPath) else {
             fatalError("coin not found.")
         }

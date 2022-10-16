@@ -20,6 +20,8 @@ final class CryptoDetailViewModel {
     
     private let db = Firestore.firestore()
     
+    private let defaults = UserDefaults.standard
+    
     private var coin: Coin
     
     private(set) var chartResponse: ChartResponse? {
@@ -70,21 +72,15 @@ final class CryptoDetailViewModel {
     }
     
     func addFavorite() {
-        do {
-            guard let data = try coin.dictionary else {
-                return
-            }
-            
-            db.collection("coins").addDocument(data: data) { err in
-                
-                if let err = err {
-                    self.delegate?.didErrorOccurred?(err)
-                } else {
-                    self.delegate?.didCoinAddedToFavorites?()
-                }
-            }
-        } catch {
-            delegate?.didErrorOccurred?(error)
+        guard let id = coin.id,
+              let uid = defaults.string(forKey: UserDefaultConstants.uid.rawValue) else {
+            return
         }
+        
+        db.collection("users").document(uid).updateData([
+            "favorites": FieldValue.arrayUnion([id])
+        ])
+        
+        delegate?.didCoinAddedToFavorites?()
     }
 }

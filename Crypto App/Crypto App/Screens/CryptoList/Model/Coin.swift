@@ -26,14 +26,6 @@ struct Coin: Codable {
     let twitterUrl: String?
     let exp: [String]?
     
-    var dictionary: [String: Any]? {
-        get throws {
-            let data = try JSONEncoder().encode(self)
-            let dictionary = try JSONSerialization.jsonObject(with: data,
-                                                              options: .allowFragments) as? [String: Any]
-            return dictionary
-        }
-    }
 }
 
 extension Coin {
@@ -65,7 +57,7 @@ extension Coin {
 }
 
 extension Coin {
-    init(from dict: [String : Any]) {
+    init(from dict: [String: Any]) {
         id = dict["id"] as? String
         icon = dict["icon"] as? String
         name = dict["name"] as? String

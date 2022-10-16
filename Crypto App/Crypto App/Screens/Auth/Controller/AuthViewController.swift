@@ -34,7 +34,7 @@ final class AuthViewController: CAViewController {
         }
     }
     
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleLabel: CALabel!
     @IBOutlet weak var credentionTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmButton: UIButton!
@@ -96,8 +96,12 @@ final class AuthViewController: CAViewController {
                 let favoritesViewModel = FavoritesViewModel()
                 let favoritesViewController = FavoritesViewController(viewModel: favoritesViewModel)
                 
+                let profileViewController = ProfileViewController()
+                
                 let tabBarController = UITabBarController()
-                tabBarController.viewControllers = [cryptoListViewController, favoritesViewController]
+                tabBarController.viewControllers = [cryptoListViewController,
+                                                    favoritesViewController,
+                                                    profileViewController]
                 self.navigationController?.pushViewController(tabBarController, animated: true)
             })
         case .signUp:

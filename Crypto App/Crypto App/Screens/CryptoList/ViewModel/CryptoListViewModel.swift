@@ -7,6 +7,7 @@
 
 import Foundation
 import Moya
+import FirebaseFirestore
 
 enum CryptoListChanges {
     case didErrorOccurred(_ error: Error)
@@ -19,6 +20,8 @@ final class CryptoListViewModel {
             self.changeHandler?(.didFetchCoins)
         }
     }
+    
+    private let db = Firestore.firestore()
     
     var changeHandler: ((CryptoListChanges) -> Void)?
     
@@ -34,10 +37,35 @@ final class CryptoListViewModel {
             case .success(let response):
                 do {
                     let coinsResponse = try JSONDecoder().decode(CoinsResponse.self, from: response.data)
+                    
+                    self.addCoinsToFirebaseFirestore(coinsResponse.coins)
+                    
                     self.coinsResponse = coinsResponse
                 } catch {
                     self.changeHandler?(.didErrorOccurred(error))
                 }
+            }
+        }
+    }
+    
+    private func addCoinsToFirebaseFirestore(_ coins: [Coin]?) {
+        guard let coins = coins else {
+            return
+        }
+        coins.forEach { coin in
+            do {
+                guard let data = try coin.dictionary, let id = coin.id else {
+                    return
+                }
+                
+                db.collection("coins").document(id).setData(data) { error in
+                    
+                    if let error = error {
+                        self.changeHandler?(.didErrorOccurred(error))
+                    }
+                }
+            } catch {
+                self.changeHandler?(.didErrorOccurred(error))
             }
         }
     }

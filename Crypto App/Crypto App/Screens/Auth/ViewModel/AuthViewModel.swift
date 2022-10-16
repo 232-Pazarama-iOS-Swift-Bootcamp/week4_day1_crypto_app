@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseAuth
 import FirebaseRemoteConfig
+import FirebaseFirestore
 
 enum AuthViewModelChange {
     case didErrorOccurred(_ error: Error)
@@ -15,6 +16,10 @@ enum AuthViewModelChange {
 }
 
 final class AuthViewModel {
+    
+    private let db = Firestore.firestore()
+    
+    private let defaults = UserDefaults.standard
     
     var changeHandler: ((AuthViewModelChange) -> Void)?
     
@@ -24,7 +29,30 @@ final class AuthViewModel {
                 self.changeHandler?(.didErrorOccurred(error))
                 return
             }
-            self.changeHandler?(.didSignUpSuccessful)
+            
+            let user = User(username: authResult?.user.displayName,
+                            email: authResult?.user.email,
+                            pp: "",
+                            favorites: [])
+            do {
+                guard let data = try user.dictionary,
+                      let id = authResult?.user.uid else {
+                    return
+                }
+                
+                self.defaults.set(id, forKey: "uid")
+                
+                self.db.collection("users").document(id).setData(data) { error in
+                    
+                    if let error = error {
+                        self.changeHandler?(.didErrorOccurred(error))
+                    } else {
+                        self.changeHandler?(.didSignUpSuccessful)
+                    }
+                }
+            } catch {
+                self.changeHandler?(.didErrorOccurred(error))
+            }
         }
     }
     
@@ -36,6 +64,12 @@ final class AuthViewModel {
                 self.changeHandler?(.didErrorOccurred(error))
                 return
             }
+            
+            guard let id = authResult?.user.uid else {
+                return
+            }
+            
+            self.defaults.set(id, forKey: "uid")
             
             completion()
         }
@@ -50,16 +84,23 @@ final class AuthViewModel {
         
         remoteConfig.fetch { (status, error) -> Void in
             if status == .success {
-                print("Config fetched!")
-                remoteConfig.activate { changed, error in
+                remoteConfig.activate { _, error in
+                    
+                    if let error = error {
+                        self.changeHandler?(.didErrorOccurred(error))
+                        return
+                    }
+                    
                     let isSignUpDisabled = remoteConfig.configValue(forKey: "isSignUpDisabled").boolValue
                     DispatchQueue.main.async {
                         completion(isSignUpDisabled)
                     }
                 }
             } else {
-                print("Config not fetched")
-                print("Error: \(error?.localizedDescription ?? "No error available.")")
+                guard let error = error else {
+                    return
+                }
+                self.changeHandler?(.didErrorOccurred(error))
             }
         }
     }

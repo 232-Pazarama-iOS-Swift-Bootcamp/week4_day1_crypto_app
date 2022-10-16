@@ -25,11 +25,11 @@ final class CoinTableViewCell: UITableViewCell {
     }
     
     @IBOutlet private(set) weak var iconImageView: UIImageView!
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var priceLabel: UILabel!
+    @IBOutlet private weak var titleLabel: CALabel!
+    @IBOutlet private weak var priceLabel: CALabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        priceLabel.font = FontFamily.Silkscreen.bold.font(size: 17.0)
     }
 }

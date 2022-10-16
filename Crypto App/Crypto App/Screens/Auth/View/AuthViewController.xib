@@ -51,6 +51,7 @@
                             </constraints>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" title="Sign In">
+                                <fontDescription key="titleFontDescription" name="Silkscreen-Regular" family="Silkscreen" pointSize="24"/>
                                 <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </buttonConfiguration>
                             <connections>
@@ -69,7 +70,7 @@
                         <action selector="didValueChangedSegmentedControl:" destination="-1" eventType="valueChanged" id="sTU-3b-VBC"/>
                     </connections>
                 </segmentedControl>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Nv-KB-eqt">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Nv-KB-eqt" customClass="CALabel" customModule="Crypto_App" customModuleProvider="target">
                     <rect key="frame" x="148.33333333333334" y="218.66666666666666" width="93.666666666666657" height="38.333333333333343"/>
                     <fontDescription key="fontDescription" type="system" pointSize="32"/>
                     <nil key="textColor"/>

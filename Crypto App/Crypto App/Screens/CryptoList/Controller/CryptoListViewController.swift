@@ -32,6 +32,10 @@ final class CryptoListViewController: CAViewController  {
         super.viewDidLoad()
         
         title = "Coins"
+        let tabBarIcon = Asset.home.image
+        tabBarItem = UITabBarItem(title: "Coins",
+                                  image: tabBarIcon,
+                                  tag: .zero)
 
         tabBarController?.navigationItem.hidesBackButton = true
 
@@ -73,7 +77,9 @@ extension CryptoListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CoinTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CoinTableViewCell else {
+            fatalError("CoinTableViewCell not found.")
+        }
         guard let coin = viewModel.coinForIndexPath(indexPath) else {
             fatalError("coin not found.")
         }
